@@ -25,7 +25,7 @@ export default function generate(
 ) {
   const schema = loadSchema(schemaPath);
 
-  const document = loadAndMergeQueryDocuments(inputPaths, tagName);
+  const document = loadAndMergeQueryDocuments(inputPaths, tagName, options);
 
   validateQueryDocument(schema, document);
 

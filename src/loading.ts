@@ -40,15 +40,20 @@ function extractDocumentFromJavascript(content: string, tagName: string = 'gql')
   return doc.length ? doc : null;
 }
 
-export function loadAndMergeQueryDocuments(inputPaths: string[], tagName: string = 'gql'): DocumentNode {
+export function loadAndMergeQueryDocuments(inputPaths: string[], tagName: string = 'gql', options: any = {}): DocumentNode {
   const sources = inputPaths.map(inputPath => {
     const body = fs.readFileSync(inputPath, 'utf8');
     if (!body) {
       return null;
     }
 
+    let optionalJsExtension = [];
+    if (options.optionalJsExtension) {
+      optionalJsExtension = options.optionalJsExtension.split(', ');
+    }
     if (inputPath.endsWith('.jsx') || inputPath.endsWith('.js')
       || inputPath.endsWith('.tsx') || inputPath.endsWith('.ts')
+      || (optionalJsExtension && optionalJsExtension.find((ext: string = '') => inputPath.endsWith(ext)))
     ) {
       const doc = extractDocumentFromJavascript(body.toString(), tagName);
       return doc ? new Source(doc, inputPath) : null;

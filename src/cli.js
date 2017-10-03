@@ -160,6 +160,12 @@ yargs
         describe: "Merge fragment fields onto its enclosing type",
         default: true,
         type: 'boolean'
+      },
+      "optional-js-extension": {
+        demand: false,
+        describe: "Optional file extension to treat as javascript (such as .es6)",
+        default: false,
+        type: 'string'
       }
     },
     argv => {
@@ -182,7 +188,8 @@ yargs
         namespace: argv.namespace,
         operationIdsPath: argv["operation-ids-path"],
         generateOperationIds: !!argv["operation-ids-path"],
-        mergeInFieldsFromFragmentSpreads: argv["merge-in-fields-from-fragment-spreads"]
+        mergeInFieldsFromFragmentSpreads: argv["merge-in-fields-from-fragment-spreads"],
+        optionalJsExtension: argv["optional-js-extension"]
       };
 
       generate(inputPaths, argv.schema, argv.output, argv.only, argv.target, argv.tagName, options);
