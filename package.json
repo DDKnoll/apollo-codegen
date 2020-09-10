@@ -44,7 +44,7 @@
     "graphql": "^0.11.3",
     "inflected": "^2.0.2",
     "mkdirp": "^0.5.1",
-    "node-fetch": "^1.7.2",
+    "node-fetch": "^2.6.1",
     "source-map-support": "^0.4.15",
     "yargs": "^8.0.2"
   },
